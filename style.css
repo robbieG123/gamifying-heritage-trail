@@ -12,9 +12,4 @@ body {
     margin: 20px;
 }
 
-html, body, #map {
-    height: 100%;
-    width: 100vw;
-}
-
-#map { height: 180px; }
+#map { height: 400px; }
