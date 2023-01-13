@@ -27,7 +27,7 @@
   </body>
 </html>
 <script>
-    var map = L.map('map')//.setView([56.4620, -2.9707], 13);
+    var map = L.map('map')
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -35,6 +35,7 @@
 
     map.locate({setView: true, maxZoom: 25});
 
+    //If the location is found with no errors call this function (leaflet.api documentation)
     function onLocationFound(e) {
         var radius = e.accuracy;
 
@@ -45,13 +46,18 @@
     }
     map.on('locationfound', onLocationFound);
 
+    //If the location find has an error call this function
     function onLocationError(e) {
         alert(e.message);
     }
     map.on('locationerror', onLocationError);
 
-    var marker = L.marker([56.458009428053565, -2.974847895393873]).addTo(map);
+    var marker = L.marker([56.461693858992, -2.9584546440361428]).addTo(map);
+    function locate() {
+        map.locate({setView: true, maxZoom: 25});
+    }
 
-    map.locate({setView: true, maxZoom: 25});
+    setInterval(locate, 3000);
+    
 
 </script>
