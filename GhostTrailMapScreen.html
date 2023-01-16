@@ -85,13 +85,22 @@
             for (let i = 0; i < circles.length; i++) {
                 var circleLatlng = L.latLng(circles[i])
                 
-                isMarkerInsideCircle(latlng, circleLatlng, circleRadius)
+                isMarkerInsideCircle(latlng, circleLatlng, circleRadius, i)
             }
             
         }
 
     
-    const circles = [[56.461693858992, -2.9584546440361428], [56.45754264075013, -2.967002643977912], [56.457931596431294, -2.976493584807401], [56.4473698, -2.9855801]];
+    const circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
+                    , [56.45754264075013, -2.967002643977912]//V&A
+                    , [56.457931596431294, -2.976493584807401]//[test]Dundee Rep Theatre
+                    , [56.4473698, -2.9855801]];//Middle of the River
+
+    const locationData = [["This is some information about the unicorn"]
+                        ,["This is some information about the V&A"]
+                        ,["This is some information about the Rep"]
+                        ,["This is some information about the River"]]
+
     for (let i = 0; i < circles.length; i++) {
         
         L.circle(circles[i], circleRadius).addTo(map_init);
@@ -99,7 +108,7 @@
     }
     
 
-    function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius){
+    function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius, locationNum){
         // markerLatLng and circleCenterLatLng must be instance of L.latlng class.
         // you can create an instance like this L.latLng(lat, lng);
         console.log(markerLatLng.distanceTo(circleCenterLatLng));
@@ -107,8 +116,7 @@
         if (markerLatLng.distanceTo(circleCenterLatLng) <= circleRadius){
             console.log("yes!");
             toggleText()
-            var text = document.getElementById("catch");
-
+            document.getElementById("catch").onclick = catchGhost(locationNum);
             return true;
         } else {
             console.log("no!")
@@ -120,9 +128,17 @@
     var text = document.getElementById("catch");
     if (text.style.display === "none") {
         text.style.display = "block";
-    } else {
-        text.style.display = "none";
     }
     }
 
+    function catchGhost(locationNum){
+        //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
+        var LatLng = circles[locationNum];
+        var lat = circles[locationNum][0]
+        var lng = circles[locationNum][1]
+        var info = locationData[locationNum]
+        sessionStorage.setItem("lat", lat);
+        sessionStorage.setItem("lng", lng);
+        sessionStorage.setItem("info", info);
+    }
 </script>
