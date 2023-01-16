@@ -26,7 +26,7 @@
             <div class="row d-flex position-relative" >
                 <div id="catch" style="display: none;">
                     <div class="col" id="box">
-                        <a  href="GhostTrailMapScreen.html" class="stretched-link">CATCH</a>
+                        <a  href="CatchScreen.html" class="stretched-link">CATCH</a>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,9 @@
     </main>
   </body>
 </html>
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js">//leafletAPI for the map</script>
+
+
 <script>
     // Geolocation Code from https://www.section.io/engineering-education/how-to-build-a-real-time-location-tracker-using-leaflet-js/
     //creates the map
@@ -90,7 +92,7 @@
         }
 
     
-    const circles = [[56.461693858992, -2.9584546440361428], [56.45754264075013, -2.967002643977912], [56.4473698, -2.9855801]];
+    const circles = [[56.461693858992, -2.9584546440361428], [56.45754264075013, -2.967002643977912], [56.457931596431294, -2.976493584807401], [56.4473698, -2.9855801]];
     for (let i = 0; i < circles.length; i++) {
         
         L.circle(circles[i], circleRadius).addTo(map_init);
