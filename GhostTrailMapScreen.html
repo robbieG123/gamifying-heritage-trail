@@ -22,6 +22,14 @@
             <h1>Map Screen</h1>
 
             <div id="map"></div>
+
+            <div class="row d-flex position-relative" >
+                <div id="catch" style="display: none;">
+                    <div class="col" id="box">
+                        <a  href="GhostTrailMapScreen.html" class="stretched-link">CATCH</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
   </body>
@@ -82,7 +90,7 @@
         }
 
     
-    const circles = [[56.461693858992, -2.9584546440361428], [56.45754264075013, -2.967002643977912]];
+    const circles = [[56.461693858992, -2.9584546440361428], [56.45754264075013, -2.967002643977912], [56.4473698, -2.9855801]];
     for (let i = 0; i < circles.length; i++) {
         
         L.circle(circles[i], circleRadius).addTo(map_init);
@@ -97,11 +105,23 @@
         console.log(circleRadius)
         if (markerLatLng.distanceTo(circleCenterLatLng) <= circleRadius){
             console.log("yes!");
+            toggleText()
+            var text = document.getElementById("catch");
+
             return true;
         } else {
             console.log("no!")
             return false;
         }
-}
+    }
+
+    function toggleText() {
+    var text = document.getElementById("catch");
+    if (text.style.display === "none") {
+        text.style.display = "block";
+    } else {
+        text.style.display = "none";
+    }
+    }
 
 </script>
