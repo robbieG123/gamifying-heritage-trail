@@ -12,16 +12,28 @@
   <body>
     <main>
         <div class="container text-center">
-            <p id="information"></p>
-            <h1>TEXT INFO</h1>
+            <div id="header"></div>
+            <h1 id="title"></h1>
+            <p id="information"></p> 
         </div>
     </main>
   </body>
 </html>
 <script> //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
     var lat = sessionStorage.getItem("lat");
+
     var lng = sessionStorage.getItem("lng");
+
     var info = sessionStorage.getItem("info");
     document.getElementById("information").innerHTML = info;
+
+    var title = sessionStorage.getItem("title");
+    document.getElementById("title").innerHTML = title;
+
+    var imageLink = sessionStorage.getItem("image");
+    var img = document.createElement("img");
+    img.src = imageLink;
+    document.getElementById("header").innerHTML = img;
+
     console.log(lat, lng, info);
 </script>

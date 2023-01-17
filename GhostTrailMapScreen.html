@@ -97,11 +97,11 @@
                     , [56.4473698, -2.9855801]//Middle of the River
                     , [56.45784893512836, -2.974880741263478]];//[test] My flat
 
-    const locationData = [["This is some information about the unicorn"]
-                        ,["This is some information about the V&A"]
+    const locationData = [["HMS Unicorn", "This is some information about the unicorn"]
+                        ,["The V&A", "This is some information about the V&A"]
                         ,["This is some information about the Rep"]
                         ,["This is some information about the River"]
-                        ,["This is some information about the Flat"]]
+                        ,["The Flat", "This is some information about the Flat", "https://i.pinimg.com/236x/72/c8/d3/72c8d340ec93c446169f55f105a39851--bts-pictures-scissors.jpg"]]
 
     for (let i = 0; i < circles.length; i++) {
         
@@ -136,9 +136,12 @@
     function catchGhost(locationNum){
         //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
         var LatLng = circles[locationNum];
-        var lat = circles[locationNum][0]
-        var lng = circles[locationNum][1]
-        var info = locationData[locationNum]
+        var lat = circles[locationNum][0];
+        var lng = circles[locationNum][1];
+        var title = locationData[locationNum][0];
+        var info = locationData[locationNum][1];
+        var image = locationData[locationNum][2];
+
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);
         sessionStorage.setItem("info", info);
