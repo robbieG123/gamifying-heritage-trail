@@ -33,7 +33,8 @@
     var imageLink = sessionStorage.getItem("image");
     var img = document.createElement("img");
     img.src = imageLink;
-    document.getElementById("header").innerHTML = img;
+    var src = document.getElementById("header");
+    src.appendChild(img);
 
     console.log(lat, lng, info);
 </script>
