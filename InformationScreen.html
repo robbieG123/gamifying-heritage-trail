@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Dundee Ghost Trail</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+        <div class="container text-center">
+            <p id="information"></p>
+        </div>
+    </main>
+  </body>
+</html>
+<script> //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
+    var lat = sessionStorage.getItem("lat");
+    var lng = sessionStorage.getItem("lng");
+    var info = sessionStorage.getItem("info");
+    document.getElementById(information).innerHTML = info;
+    console.log(lat, lng, info);
+</script>
