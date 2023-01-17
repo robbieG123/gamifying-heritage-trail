@@ -22,35 +22,31 @@
     <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
   </head>
   <script>
-    AFRAME.registerComponent('markerhandler', {
-      init: function () {
-        this.el.sceneEl.addEventListener('markerFound', () => {
-          alert('Image found!');
-        });
-    }});
-  </script>
+    // Component to change to a sequential color on click.
+    AFRAME.registerComponent('cursor-listener', {
+    init: function () {
+        var lastIndex = -1;
+        var COLORS = ['red', 'green', 'blue'];
+        this.el.addEventListener('click', function (evt) {
+            lastIndex = (lastIndex + 1) % COLORS.length;
+            this.setAttribute('material', 'color', COLORS[lastIndex]);
+            console.log('I was clicked at: ', evt.detail.intersection.point);
+            });
+        }
+    });
+</script>
   <body>
     <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
-      <!-- minimal loader shown until image descriptors are loaded -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <!-- we use cors proxy to avoid cross-origin problems -->
-    <!-- we use the trex image shown on the homepage of the docs -->
-    <a-nft
-      markerhandler
-      type="nft"
-      url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"
-    >
-    </a-nft>
-    <a-entity camera></a-entity>
-  </a-scene>
+    <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+        <a-camera gps-new-camera='gpsMinDistance: 25'>
+            <a-entity cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 -1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: black; shader: flat">
+            </a-entity>  <!--fuse: false when on desktop, true on mobile -->
+        </a-camera>
+        <a-box cursor-listener geometry="primitive: box" material="color: red"></a-box>
+    </a-scene>
   </body>
 </html>
 <script> //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
