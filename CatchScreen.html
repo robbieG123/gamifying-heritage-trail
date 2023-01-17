@@ -39,13 +39,13 @@
     <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
     <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
         <a-camera gps-new-camera='gpsMinDistance: 25'>
-            <a-entity cursor="fuse: true; fuseTimeout: 500"
+            <a-entity cursor="fuse: false; fuseTimeout: 500"
                 position="0 0 -1"
                 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
                 material="color: black; shader: flat">
             </a-entity>  <!--fuse: false when on desktop, true on mobile -->
         </a-camera>
-        <a-entity id="box" cursor-listener geometry="primitive: box" material="color: red"></a-entity>
+        <a-entity id="box" cursor-listener geometry="primitive: box" material="color: red" position="0 1 -1"></a-entity>
     </a-scene>
   </body>
 </html>
@@ -54,4 +54,30 @@
     var lng = sessionStorage.getItem("lng");
     var info = sessionStorage.getItem("info");
     console.log(lat, lng, info);
+</script>
+<script>
+    //https://ar-js-org.github.io/AR.js-Docs/location-based-aframe/#introducing-javascript-with-arjs
+    window.onload = () => {
+    let testEntityAdded = false;
+    const el = document.querySelector("[gps-new-camera]");
+    el.addEventListener("gps-camera-update-position", e => {
+        if(!testEntityAdded) {
+            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
+            // Add a box to the north of the initial GPS position
+            const entity = document.createElement("a-box");
+            entity.setAttribute("scale", {
+                x: 20, 
+                y: 20,
+                z: 20
+            });
+            entity.setAttribute('material', { color: 'red' } );
+            entity.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude + 0.001,
+                longitude: e.detail.position.longitude
+            });
+            document.querySelector("a-scene").appendChild(entity);
+        }
+        testEntityAdded = true;
+    });
+};
 </script>
