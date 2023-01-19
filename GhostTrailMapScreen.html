@@ -94,17 +94,29 @@
     const circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
                     , [56.45754264075013, -2.967002643977912]//V&A
                     , [56.457931596431294, -2.976493584807401]//[test]Dundee Rep Theatre
-                    , [56.4473698, -2.9855801]//Middle of the River
-                    , [56.45784893512836, -2.974880741263478]];//[test] My flat
+                    , [56.4473698, -2.9855801]//[test]Middle of the River
+                    , [56.45784893512836, -2.974880741263478]//[test] My flat
+                    , [56.45696385016537, -2.9688912702269348]// Discovery
+                    , [56.45797604519422, -2.9743101952862383]// DMA Headquarters
+                    , [56.45840442854417, -2.9824555984409122]// Dundee Uni
+                    , [56.461442520320624, -2.983517639643721]// Verdant Works
+                    , [56.46241918920453, -2.9709972375674463]// McManus Galleries
+                    , [56.46489142163189, -2.9641433607646053]// Wishart's Arch
+                    ];
 
-    const locationData = [["HMS Unicorn", "This is some information about the unicorn"]
-                        ,["The V&A", "This is some information about the V&A"]
+    const locationData = [["HMS Unicorn", "The HMS Unicorn is the oldest surviving ship in Scotland. It was launched in 1824 after being built in Chatham Dockyard in Kent. The ship was built for war however, was launched just after the end of the naval wars against Napolean so was never used in real combat. Instead, it was kept in 'ordinary' as a reserve ship until 1873 when it was sent to Dundee to be used as a training ship, which it carried out for nearly 100 years until 1968 when it was considered to be scrapped. However, The Unicorn Preservation Society (UPS) was formed and managed to prevent this from happening and to keep it as a landmark for the city, where it stays today", "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/HMS_Unicorn%2C_Dundee_002.jpg/450px-HMS_Unicorn%2C_Dundee_002.jpg"]
+                        ,["The V&A Dundee", "The V&A Dundee was opened on the 15th September 2018, becoming the first design museum in Scotland and the first Victoria and Albert museum outside London. The design of the building was decided by a competition in 2010. The winner was Japanese architect, Kengo Kuma who said his design was inspired by the eastern cliff edges of Scotland. Construction started in April 2014 and cost £80.1 Million to complete.", "https://d363suj4pdptk4.cloudfront.net/externalApps/b4764c1e-e783-4381-aa97-e1f506037d14/conversion/sirtrevor--1072/assets/14960"]
                         ,["This is some information about the Rep"]
-                        ,["This is some information about the River"]
-                        ,["The Flat", "This is some information about the Flat", "https://i.pinimg.com/236x/72/c8/d3/72c8d340ec93c446169f55f105a39851--bts-pictures-scissors.jpg"]]
+                        ,["River Tay","This is some information about the River", "https://www.dundee.com/sites/default/files/styles/grid_wide/public/Attractions%20-%20River%20Tay.jpg?itok=6fx9VxdB"]
+                        ,["The Flat", "This is some information about the Flat", "https://i.pinimg.com/236x/72/c8/d3/72c8d340ec93c446169f55f105a39851--bts-pictures-scissors.jpg"]
+                        ,["RMS Discovery", "This is some information about the Discovery"]
+                        ,["DMA Designs HQ", "This is some information about the original DMA designs HQ", "http://www.javalemmings.com/DMA/Office1/Images/large/Office_4.jpg"]
+                        ,["Dundee University", "This is some information about the University", ""]
+                        ,["Verdant Works", "This is some information about the University", ""]
+                        ,["McManus Galleries", "This is some information about the University", ""]
+                        ,["Wishart's Arch", "This is some information about the University", ""]]
 
     for (let i = 0; i < circles.length; i++) {
-        
         L.circle(circles[i], circleRadius).addTo(map_init);
         L.marker(circles[i]).addTo(map_init);
     }
