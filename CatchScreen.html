@@ -60,8 +60,9 @@
         if(!testEntityAdded) {
             alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
             // Add a box to the north of the initial GPS position
-            const entity = document.createElement("a-box");
+            const entity = document.createElement("a-entity");
             entity.setAttribute('ghost', ''); //assigns Ghost to ghost component so it can be interacted with
+            entity.setAttribute('obj-model', 'obj: url(uploads_files_2429369_spook.obj)');
             entity.setAttribute("scale", {
                 x: 20, 
                 y: 20,
