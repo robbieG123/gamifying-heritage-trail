@@ -58,9 +58,9 @@
     const el = document.querySelector("[gps-new-camera]");
     el.addEventListener("gps-camera-update-position", e => {
         if(!testEntityAdded) {
-            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
             // Add a box to the north of the initial GPS position
             const entity = document.createElement("a-entity");
+            entity.setAttribute('id', 'ghostID')
             entity.setAttribute('ghost', ''); //assigns Ghost to ghost component so it can be interacted with
             entity.setAttribute('obj-model', 'obj: url(uploads_files_2429369_spook.obj)');
             entity.setAttribute("scale", {
@@ -76,5 +76,20 @@
         }
         testEntityAdded = true;
     });
+    let caught = false;
+    while (caught == false){
+        const model = document.getElementById('ghostID')
+        model .setAttribute('gps-new-entity-place', {
+            latitude: e.detail.position.latitude + 0.0001,
+            longitude: e.detail.position.longitude + 0.0001
+        });
+        setTimeout(() => {
+            model.components["gps-new-entity-place"]._updatePosition(); 
+        }, 2000);
+        
+    }
+    
 };
+
+
 </script>
