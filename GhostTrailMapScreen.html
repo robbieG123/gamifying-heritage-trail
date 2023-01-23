@@ -8,7 +8,7 @@
     <title>Dundee Ghost Trail</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-
+    <link href='https://fonts.googleapis.com/css?family=Averia Sans Libre' rel='stylesheet' href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
@@ -19,16 +19,22 @@
   <body>
     <main>
         <div class="container text-center">
-            <h1>Map Screen</h1>
+            <h1>Ghost Map</h1>
 
             <div id="map"></div>
 
-            <div class="row d-flex position-relative" >
+            <div class="row d-flex position-relative">
+                <div id="home" style="display: block">
+                    <div class="col" id="box">
+                        <a  href="GhostTrailHomepage.html" class="stretched-link">HOME</a>
+                    </div>
+                </div>
                 <div id="catch" style="display: none;">
                     <div class="col" id="box">
                         <a  href="CatchScreen.html" class="stretched-link">CATCH</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
@@ -137,10 +143,16 @@
     }
 
     function toggleText() {
+        var homeText = document.getElementById("home");
+    if (homeText.style.display === "block") {
+        homeText.style.display = "none";
+    }
+    
     var text = document.getElementById("catch");
     if (text.style.display === "none") {
         text.style.display = "block";
     }
+    
     }
 
     function catchGhost(locationNum){
