@@ -114,11 +114,22 @@
                         ,["River Tay","This is some information about the River", "https://www.dundee.com/sites/default/files/styles/grid_wide/public/Attractions%20-%20River%20Tay.jpg?itok=6fx9VxdB"]
                         ,["The Flat", "This is some information about the Flat", "https://i.pinimg.com/236x/72/c8/d3/72c8d340ec93c446169f55f105a39851--bts-pictures-scissors.jpg"]
                         ,["RMS Discovery", "This is some information about the Discovery"]
-                        ,["DMA Designs HQ", "This is some information about the original DMA designs HQ", "http://www.javalemmings.com/DMA/Office1/Images/large/Office_4.jpg"]
+                        ,["DMA Designs HQ", "This is some information about the original DMA designs HQ", "https://i2-prod.dailyrecord.co.uk/incoming/article25805725.ece/ALTERNATES/s615b/0_DMAoffice.png"]
                         ,["Dundee University", "This is some information about the University", ""]
                         ,["Verdant Works", "This is some information about the University", ""]
                         ,["McManus Galleries", "This is some information about the University", ""]
                         ,["Wishart's Arch", "This is some information about the University", ""]]
+
+    const quiz = [["What year was the HMS Unicorn launched?", "1815", "1824", "1853", "1877", 2]
+                ,[]
+                ,[]
+                ,[]
+                ,[]
+                ,["What game did DMA Design/Rockstar North release in 1997?", "Call of Duty", "Medal of Honour", "Grand Theft Auto", "Quake", 3]
+                ,[]
+                ,[]
+                ,[]
+                ,[]]
 
     for (let i = 0; i < circles.length; i++) {
         L.circle(circles[i], circleRadius).addTo(map_init);
@@ -160,15 +171,30 @@
         var LatLng = circles[locationNum];
         var lat = circles[locationNum][0];
         var lng = circles[locationNum][1];
+
         var title = locationData[locationNum][0];
         var info = locationData[locationNum][1];
         var image = locationData[locationNum][2];
+
+        var question = quiz[locationNum][0];
+        var ans1 = quiz[locationNum][1];
+        var ans2 = quiz[locationNum][2];
+        var ans3 = quiz[locationNum][3];
+        var ans4 = quiz[locationNum][4];
+        var correct = quiz[locationNum][5];
 
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);
         sessionStorage.setItem("title", title);
         sessionStorage.setItem("info", info);
         sessionStorage.setItem("image", image);
+
+        sessionStorage.setItem("question", question);
+        sessionStorage.setItem("ans1", ans1);
+        sessionStorage.setItem("ans2", ans2);
+        sessionStorage.setItem("ans3", ans3);
+        sessionStorage.setItem("ans4", ans4);
+        sessionStorage.setItem("correct", correct);
 
     }
 </script>

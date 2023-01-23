@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Dundee Ghost Trail</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Averia Sans Libre' rel='stylesheet' href="style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+        <!-- https://simplestepscode.com/javascript-quiz-tutorial/ -->
+        <div id="quiz"></div>
+        <button id="submit">Get Results</button>
+        <div id="results"></div>
+    </main>
+  </body>
+</html>
+<script>
+    //var quiz = sessionStorage.getItem("quiz");
+    var question = sessionStorage.getItem("question");
+    var ans1 = sessionStorage.getItem("ans1");
+    var ans2 = sessionStorage.getItem("ans2");
+    var ans3 = sessionStorage.getItem("ans3");
+    var ans4 = sessionStorage.getItem("ans4");
+    var correct = sessionStorage.getItem("correct");
+
+    function generateQuiz(question, ans1, ans2, ans3, ans4, correct){
+
+        var output = []
+        var answers = []
+
+
+        // ...add an html radio button
+        answers.push(
+            '<label>'
+                + '<input type="radio" name="question1" value="1">'
+                +  'A: '
+                + ans1
+            + '</label>'
+            '<label>'
+                + '<input type="radio" name="question2" value="2">'
+                +  'B: '
+                + ans2
+            + '</label>'
+            '<label>'
+                + '<input type="radio" name="question3" value="3">'
+                +  'C: '
+                + ans3
+            + '</label>'
+            '<label>'
+                + '<input type="radio" name="question4" value="4">'
+                +  'D: '
+                + ans4
+            + '</label>'
+        );
+
+        output.push(
+            '<div class="question">' + question + '</div>'
+			+ '<div class="answers">' + answers.join('') + '</div>'  
+        );
+
+        document.getElementById("quiz").innerHTML = output.join('');
+
+    }
+    
+</script>
