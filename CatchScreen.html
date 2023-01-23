@@ -78,11 +78,11 @@
         alert("increasing");
         const model = document.getElementById('ghostID')
         model.setAttribute('gps-new-entity-place', {
-            latitude: e.detail.position.latitude + 0.0001,
-            longitude: e.detail.position.longitude + 0.0001
+            latitude: e.detail.position.latitude + i/100,
+            longitude: e.detail.position.longitude + i/100
         });
        // setTimeout(() => {
-            model.components["gps-new-entity-place"]._updatePosition(); 
+        document.querySelector("a-scene").appendChild(model) 
        // }, 500);
         sleep(2000);
     }
