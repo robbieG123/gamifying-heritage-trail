@@ -88,7 +88,6 @@
             //map_init.fitBounds(featureGroup.getBounds())
             
 
-            removeMarker(); //could be causing trouble
             console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy);
             for (let i = 0; i < circles.length; i++) {
                 var circleLatlng = L.latLng(circles[i])
@@ -144,7 +143,6 @@
     
                 ,[]]
 
-    removeMarker();
     for (let i = 0; i < circles.length; i++) {
         L.circle(circles[i], circleRadius).addTo(map_init);
         L.marker(circles[i]).addTo(map_init);
