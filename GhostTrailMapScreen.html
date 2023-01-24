@@ -86,7 +86,9 @@
             var featureGroup = L.featureGroup([marker, circle]).addTo(map_init);
 
             //map_init.fitBounds(featureGroup.getBounds())
+            
 
+            removeMarker(); //could be causing trouble
             console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy);
             for (let i = 0; i < circles.length; i++) {
                 var circleLatlng = L.latLng(circles[i])
@@ -95,7 +97,17 @@
             }
             
         }
+    function removeMarker(){
+        var locationNum = sessionStorage.getItem("locationNum");
+        caughtGhosts.push(locationNum)
+        if(catchGhost.length > 0){
+            for (let x = 0; x < caughtGhosts.length; x++){
+                circles.splice(locationNum, 1)
+            }
+        }
+    }
 
+    const caughtGhosts = []
     
     const circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
                     , [56.45754264075013, -2.967002643977912]//V&A
@@ -121,7 +133,7 @@
                         ,["Wishart's Arch", "This is some information about the University", ""]]
 
     const quiz = [["What year was the HMS Unicorn launched?", "1815", "1824", "1853", "1877", 2]
-                ,[]
+                ,["What inspired the design of the V&A?", "Ships", "Whales", "Cliffs", "Waves", 3]
                 ,["Question", "1", "2","3","4",2]
                 ,[]
                 ,[]
@@ -129,8 +141,10 @@
                 ,[]
                 ,[]
                 ,[]
+    
                 ,[]]
 
+    removeMarker();
     for (let i = 0; i < circles.length; i++) {
         L.circle(circles[i], circleRadius).addTo(map_init);
         L.marker(circles[i]).addTo(map_init);
@@ -182,6 +196,8 @@
         var ans3 = quiz[locationNum][3];
         var ans4 = quiz[locationNum][4];
         var correct = quiz[locationNum][5];
+
+        sessionStorage.setItem("locationNum", locationNum)
 
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);

@@ -12,10 +12,12 @@
   </head>
   <body>
     <main>
-        <!-- https://simplestepscode.com/javascript-quiz-tutorial/ -->
-        <div id="quiz"></div>
-        <button id="submit">Get Results</button>
-        <div id="results"></div>
+            <div class="container text-center">
+            <!-- https://simplestepscode.com/javascript-quiz-tutorial/ -->
+            <div id="quiz"></div>
+            <button id="submit">Get Results</button>
+            <div id="results"></div>
+        </div>
     </main>
   </body>
 </html>
@@ -78,6 +80,7 @@
             if(document.getElementById(i).checked) {
                 if(i == correct){
                     console.log("correct!")
+                    window.location.assign("GhostTrailMapScreen.html");
                 }
                 else{
                     console.log("false!")
