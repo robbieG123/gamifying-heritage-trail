@@ -28,43 +28,62 @@
     var ans4 = sessionStorage.getItem("ans4");
     var correct = sessionStorage.getItem("correct");
 
+    generateQuiz(question, ans1, ans2, ans3, ans4, correct);
+
+    document.getElementById('submit').onclick = function(){
+        checkResults()
+    }
+
     function generateQuiz(question, ans1, ans2, ans3, ans4, correct){
 
         var output = []
         var answers = []
-
+        
 
         // ...add an html radio button
         answers.push(
             '<label>'
-                + '<input type="radio" name="question1" value="1">'
+                + '<input type="radio" name="answer" value="1" id="1">'
                 +  'A: '
                 + ans1
-            + '</label>'
+            + '</label>' +
             '<label>'
-                + '<input type="radio" name="question2" value="2">'
+                + '<input type="radio" name="answer" value="2" id="2">'
                 +  'B: '
                 + ans2
-            + '</label>'
+            + '</label>' +
             '<label>'
-                + '<input type="radio" name="question3" value="3">'
+                + '<input type="radio" name="answer" value="3" id="3">'
                 +  'C: '
                 + ans3
-            + '</label>'
+            + '</label>' +
             '<label>'
-                + '<input type="radio" name="question4" value="4">'
+                + '<input type="radio" name="answer" value="4" id="4">'
                 +  'D: '
                 + ans4
             + '</label>'
         );
 
         output.push(
-            '<div class="question">' + question + '</div>'
+            '<div class="question">' + '<h1>' +question + '</h1>'+'</div>'
 			+ '<div class="answers">' + answers.join('') + '</div>'  
         );
 
         document.getElementById("quiz").innerHTML = output.join('');
+        
+    }
 
+    function checkResults(){
+        for (let i = 1; i<=4;i++){
+            if(document.getElementById(i).checked) {
+                if(i == correct){
+                    console.log("correct!")
+                }
+                else{
+                    console.log("false!")
+                }
+            }
+        }
     }
     
 </script>
