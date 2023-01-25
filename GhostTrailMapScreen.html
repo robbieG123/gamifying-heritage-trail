@@ -205,6 +205,7 @@
     }
 
     function catchGhost(locationNum){
+        sessionStorage.clear();
         //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
         var LatLng = circles[locationNum];
         var lat = circles[locationNum][0];
