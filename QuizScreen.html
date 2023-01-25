@@ -12,12 +12,15 @@
   </head>
   <body>
     <main>
-            <div class="container text-center">
+        <div class="container text-center">
             <!-- https://simplestepscode.com/javascript-quiz-tutorial/ -->
             <div id="quiz"></div>
-            <button id="submit">Get Results</button>
-            <div id="results"></div>
         </div>
+        <button id="box">
+            <h1>SUBMIT</h1>
+        </button>
+        <div id="results"></div>
+        
     </main>
   </body>
 </html>
@@ -32,7 +35,7 @@
 
     generateQuiz(question, ans1, ans2, ans3, ans4, correct);
 
-    document.getElementById('submit').onclick = function(){
+    document.getElementById('box').onclick = function(){
         checkResults()
     }
 
@@ -44,23 +47,27 @@
 
         // ...add an html radio button
         answers.push(
-            '<label>'
+            '<label class="container">'
                 + '<input type="radio" name="answer" value="1" id="1">'
+                + '<span class ="checkmark"></span>'
                 +  'A: '
                 + ans1
             + '</label>' +
-            '<label>'
+            '<label class="container">'
                 + '<input type="radio" name="answer" value="2" id="2">'
+                + '<span class ="checkmark"></span>'
                 +  'B: '
                 + ans2
             + '</label>' +
-            '<label>'
+            '<label class="container">'
                 + '<input type="radio" name="answer" value="3" id="3">'
+                + '<span class ="checkmark"></span>'
                 +  'C: '
                 + ans3
             + '</label>' +
-            '<label>'
+            '<label class="container">'
                 + '<input type="radio" name="answer" value="4" id="4">'
+                + '<span class ="checkmark"></span>'
                 +  'D: '
                 + ans4
             + '</label>'
@@ -84,6 +91,7 @@
                 }
                 else{
                     console.log("false!")
+                    window.location.assign("CatchScreen.html");
                 }
             }
         }
