@@ -44,7 +44,7 @@
 
 
 <script>
-    sessionStorage.clear();
+    //sessionStorage.clear();
     // Geolocation Code from https://www.section.io/engineering-education/how-to-build-a-real-time-location-tracker-using-leaflet-js/
     //creates the map
     var map_init = L.map('map', {
@@ -65,9 +65,12 @@
                 navigator.geolocation.getCurrentPosition(getPosition)   
             }, 5000);
         };
+        
         var marker, circle, lat, long, accuracy;
 
         function getPosition(position) {
+            
+
             lat = position.coords.latitude
             long = position.coords.longitude
             accuracy = position.coords.accuracy
@@ -97,15 +100,8 @@
             }
             
         }
-    function removeMarker(){
-        var locationNum = sessionStorage.getItem("locationNum");
-        caughtGhosts.push(locationNum)
-        if(catchGhost.length > 0){
-            for (let x = 0; x < caughtGhosts.length; x++){
-                circles.splice(locationNum, 1)
-            }
-        }
-    }
+
+  
 
     const caughtGhosts = []
     
@@ -144,11 +140,40 @@
     
                 ,[]]
 
-    for (let i = 0; i < circles.length; i++) {
-        L.circle(circles[i], circleRadius).addTo(map_init);
-        L.marker(circles[i]).addTo(map_init);
+
+    function placeMarkers(){
+        var locationNum = sessionStorage.getItem("locationNum");
+        caughtGhosts.push(circles[locationNum]);
+        for (let i = 0; i < circles.length; i++) {
+            var caught = false;
+            for (let j = 0; j < caughtGhosts.length; j++){
+                if (circles[i] == caughtGhosts[j]){
+                    caught = true
+                    console.log("caught");
+                }
+            }
+            if (caught == false){
+                L.circle(circles[i], circleRadius).addTo(map_init);
+                L.marker(circles[i]).addTo(map_init);
+            }
+        }
+    }
+
+
+    function removeMarker(locationNum){
+        console.log(circles[locationNum]);
+        if(catchGhost.length > 0){
+            for (let x = 0; x < caughtGhosts.length; x++){
+                circles[locationNum] = [0, 0];
+            }
+        }
     }
     
+    placeMarkers();
+    var locationNum = sessionStorage.getItem("locationNum");
+    var lat = sessionStorage.getItem("lat");
+    console.log(lat);
+    removeMarker(locationNum);
 
     function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius, locationNum){
         // markerLatLng and circleCenterLatLng must be instance of L.latlng class.
@@ -196,6 +221,8 @@
         var ans4 = quiz[locationNum][4];
         var correct = quiz[locationNum][5];
 
+        
+
         sessionStorage.setItem("locationNum", locationNum)
 
         sessionStorage.setItem("lat", lat);
@@ -210,6 +237,6 @@
         sessionStorage.setItem("ans3", ans3);
         sessionStorage.setItem("ans4", ans4);
         sessionStorage.setItem("correct", correct);
-
+        //
     }
 </script>
