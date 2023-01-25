@@ -68,34 +68,33 @@
         
         var marker, circle, lat, long, accuracy;
 
+        // getPosition() gets the users current position and checks if it is inside any of the circles
         function getPosition(position) {
             
+            lat = position.coords.latitude //latitiude of users position
+            long = position.coords.longitude //longitude of users position
+            accuracy = position.coords.accuracy //accuracy of users coordinates
 
-            lat = position.coords.latitude
-            long = position.coords.longitude
-            accuracy = position.coords.accuracy
-
-            if (marker) {
+            if (marker) { // if the marker has already been placed, removes it for the new one to be placed
                 map_init.removeLayer(marker)
             }
 
             if (circle) {
                 map_init.removeLayer(circle)
             }
-            var latlng = L.latLng([lat, long])
-            //console.log("yes!");
-            marker = L.marker(latlng)
-            circle = L.circle(latlng, { radius: accuracy })
 
-            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init);
+            var latlng = L.latLng([lat, long]) // creates a LatLng object from the coordinates
+
+            marker = L.marker(latlng) // declares marker at the location
+            circle = L.circle(latlng, { radius: accuracy }) // declares circle at the location
+
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init); // places the marker and circle into the map
 
             //map_init.fitBounds(featureGroup.getBounds())
             
-
-            console.log("Your coordinate is: Lat: " + lat + " Long: " + long + " Accuracy: " + accuracy);
-            for (let i = 0; i < circles.length; i++) {
+            //checks if the user is inside any of the circles
+            for (let i = 0; i < circles.length; i++) { 
                 var circleLatlng = L.latLng(circles[i])
-                
                 isMarkerInsideCircle(latlng, circleLatlng, circleRadius, i, circles[i])
             }
             
@@ -143,34 +142,32 @@
                 ,[]
     
                 ,[]]
+    
+    // uses sessionStorage to add the most recently visited location to caughtGhostsArray. If no ghosts have been caught 'null/undefined' is added to array
+    var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
+    var caughtGhosts = sessionStorage.getItem("caughtGhosts") //string of all caught ghost coordinates
+    sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
+    var caughtGhosts = sessionStorage.getItem("caughtGhosts") //gets the updated caughtGhosts string for use
+    const caughtGhostsArray = caughtGhosts.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
 
-    var locationNum = sessionStorage.getItem("locationNum");
-    var caughtGhosts = sessionStorage.getItem("caughtGhosts")
-    sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]);
-    var caughtGhosts = sessionStorage.getItem("caughtGhosts")
-    console.log(caughtGhosts);
-    const caughtGhostsArray = caughtGhosts.split("/");
-    console.log(caughtGhostsArray);
 
+    //placeMarkers() places the markers of all unvisited locations defined in the circles array
     function placeMarkers(){
+        removeMarker(locationNum, caughtGhostsArray);   //changes all visited markers from the circles array to [0, 0]
 
-        removeMarker(locationNum, caughtGhostsArray);
-
-        for (let i = 0; i < circles.length; i++) {
-            var caught = false;
-            for (let j = 0; j < caughtGhostsArray.length; j++){
-                if (circles[i] == caughtGhostsArray[j]){
-                    caught = true
-                    console.log("caught");
+        for (let i = 0; i < circles.length; i++) {  //loops for the length of circles array
+            var caught = false; //declares that the ghost has not been caught
+            for (let j = 0; j < caughtGhostsArray.length; j++){ //loops for length of caughtGhostsArray
+                if (circles[i] == caughtGhostsArray[j]){    //checks if the current location has already been caught (is in the caughtGhostsArray)
+                    caught = true // if already been caught. caught = true
                 }
             }
-            if (caught == false){
-                L.circle(circles[i], circleRadius).addTo(map_init);
-                L.marker(circles[i]).addTo(map_init);
+            if (caught == false){   //if the ghost hasnt already been caught
+                L.circle(circles[i], circleRadius).addTo(map_init); //place circle at the location
+                L.marker(circles[i]).addTo(map_init);   //place circle at the location
             }
         }
     }
-
 
     function removeMarker(locationNum, caughtGhosts){
         console.log(circles[locationNum]);
@@ -181,60 +178,56 @@
         }
     }
     
-    placeMarkers();
-
-
+    placeMarkers(); //calls the placeMarkers() function
+ 
+    // isMarkerInsideCircle() checks if the user is inside any of the marker circles and if the ghost has been caught at that location before
     function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius, locationNum, stringLatLng){
-        // markerLatLng and circleCenterLatLng must be instance of L.latlng class.
-        // you can create an instance like this L.latLng(lat, lng);
-        //console.log(markerLatLng.distanceTo(circleCenterLatLng));
-        //console.log(circleRadius)
-        var visited = false;
-        if (markerLatLng.distanceTo(circleCenterLatLng) <= circleRadius){
-            for (let j = 0; j < caughtGhostsArray.length; j++){
-                console.log(stringLatLng.toString());
-                console.log(caughtGhostsArray[j]);
-                if (stringLatLng.toString() == caughtGhostsArray[j]){
-                    console.log("not there")
-                    visited = true;
+
+        var visited = false; //variable that declares whether this marker has been visited (Initially false)
+        if (markerLatLng.distanceTo(circleCenterLatLng) <= circleRadius){ //checks if the distance from the users location to the center of the circle is less than the radius of the circle
+            for (let j = 0; j < caughtGhostsArray.length; j++){ //loops for the length of the session variable caughtGhostsArray
+                if (stringLatLng.toString() == caughtGhostsArray[j]){   //checks if the coordinates of the marker has already been caught and is in the caughtGhostsArray
+                    visited = true; //if it has been caught, then visited is true
                 }
             }
-            if (visited == false){
-                toggleText()
-                document.getElementById("catch").onclick = catchGhost(locationNum);
+            if (visited == false){ //if the marker hasn't been caught
+                toggleText()    //change the button text from 'HOME' to 'CATCH'
+                document.getElementById("catch").onclick = catchGhost(locationNum); //When catch button is clicked, call the catchGhost function
                 return true;
             }
-            
         } else {
             return false;
         }
     }
 
+    // toggleText() changes the button on MapScreen from home to catch and vice versa
     function toggleText() {
+        //changes home to catch
         var homeText = document.getElementById("home");
-    if (homeText.style.display === "block") {
-        homeText.style.display = "none";
-    }
-    
-    var text = document.getElementById("catch");
-    if (text.style.display === "none") {
-        text.style.display = "block";
-    }
+        if (homeText.style.display === "block") {
+            homeText.style.display = "none";
+        }
+        //changes catch to home
+        var text = document.getElementById("catch");
+        if (text.style.display === "none") {
+            text.style.display = "block";
+        }
     
     }
 
+    //catchGhost() triggers when the user presses the catch button when they're near a marker. It pushes all the data of that location to session storage
     function catchGhost(locationNum){
-       
-
-        //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
+        //Coordinate data
         var LatLng = circles[locationNum];
         var lat = circles[locationNum][0];
         var lng = circles[locationNum][1];
 
+        //Location data
         var title = locationData[locationNum][0];
         var info = locationData[locationNum][1];
         var image = locationData[locationNum][2];
 
+        //Quiz data
         var question = quiz[locationNum][0];
         var ans1 = quiz[locationNum][1];
         var ans2 = quiz[locationNum][2];
@@ -242,12 +235,11 @@
         var ans4 = quiz[locationNum][4];
         var correct = quiz[locationNum][5];
 
-        
 
         sessionStorage.setItem("locationNum", locationNum)
-
         sessionStorage.setItem("lat", lat);
         sessionStorage.setItem("lng", lng);
+
         sessionStorage.setItem("title", title);
         sessionStorage.setItem("info", info);
         sessionStorage.setItem("image", image);
@@ -258,6 +250,5 @@
         sessionStorage.setItem("ans3", ans3);
         sessionStorage.setItem("ans4", ans4);
         sessionStorage.setItem("correct", correct);
-        //
     }
 </script>
