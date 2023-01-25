@@ -103,7 +103,7 @@
 
   
 
-    const caughtGhosts = []
+    var caughtGhosts = []
     
     const circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
                     , [56.45754264075013, -2.967002643977912]//V&A
@@ -150,6 +150,7 @@
                 if (circles[i] == caughtGhosts[j]){
                     caught = true
                     console.log("caught");
+                    circles[i] = [0, 0];
                 }
             }
             if (caught == false){
@@ -171,8 +172,6 @@
     
     placeMarkers();
     var locationNum = sessionStorage.getItem("locationNum");
-    var lat = sessionStorage.getItem("lat");
-    console.log(lat);
     removeMarker(locationNum);
 
     function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius, locationNum){
