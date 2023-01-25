@@ -96,18 +96,20 @@
             for (let i = 0; i < circles.length; i++) {
                 var circleLatlng = L.latLng(circles[i])
                 
-                isMarkerInsideCircle(latlng, circleLatlng, circleRadius, i)
+                isMarkerInsideCircle(latlng, circleLatlng, circleRadius, i, circles[i])
             }
             
         }
 
-  
+    var caughtGhosts = [];
 
-    var caughtGhosts = []
     
-    const circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
+    
+
+    var circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
                     , [56.45754264075013, -2.967002643977912]//V&A
-                    , [56.4473698, -2.9855801]//[test]Middle of the River
+                    , [56.4473698, -2.9855801] //[test]Middle of the River
+                    , [56.4473698, -2.9855801] //[test]Middle of the River2
                     , [56.45784893512836, -2.974880741263478]//[test] My flat
                     , [56.45696385016537, -2.9688912702269348]// Discovery
                     , [56.45797604519422, -2.9743101952862383]// DMA Headquarters
@@ -120,6 +122,7 @@
     const locationData = [["HMS Unicorn", "The HMS Unicorn is the oldest surviving ship in Scotland. It was launched in 1824 after being built in Chatham Dockyard in Kent. The ship was built for war however, was launched just after the end of the naval wars against Napolean so was never used in real combat. Instead, it was kept in 'ordinary' as a reserve ship until 1873 when it was sent to Dundee to be used as a training ship, which it carried out for nearly 100 years until 1968 when it was considered to be scrapped. However, The Unicorn Preservation Society (UPS) was formed and managed to prevent this from happening and to keep it as a landmark for the city, where it stays today", "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/HMS_Unicorn%2C_Dundee_002.jpg/450px-HMS_Unicorn%2C_Dundee_002.jpg"]
                         ,["The V&A Dundee", "The V&A Dundee was opened on the 15th September 2018, becoming the first design museum in Scotland and the first Victoria and Albert museum outside London. The design of the building was decided by a competition in 2010. The winner was Japanese architect, Kengo Kuma who said his design was inspired by the eastern cliff edges of Scotland. Construction started in April 2014 and cost £80.1 Million to complete.", "https://d363suj4pdptk4.cloudfront.net/externalApps/b4764c1e-e783-4381-aa97-e1f506037d14/conversion/sirtrevor--1072/assets/14960"]
                         ,["River Tay","This is some information about the River", "https://www.dundee.com/sites/default/files/styles/grid_wide/public/Attractions%20-%20River%20Tay.jpg?itok=6fx9VxdB"]
+                        ,["River Tay 2","This is some information about the River", "https://www.dundee.com/sites/default/files/styles/grid_wide/public/Attractions%20-%20River%20Tay.jpg?itok=6fx9VxdB"]
                         ,["The Flat", "This is some information about the Flat", "https://i.pinimg.com/236x/72/c8/d3/72c8d340ec93c446169f55f105a39851--bts-pictures-scissors.jpg"]
                         ,["RMS Discovery", "This is some information about the Discovery"]
                         ,["DMA Designs HQ", "This is some information about the original DMA designs HQ", "https://i2-prod.dailyrecord.co.uk/incoming/article25805725.ece/ALTERNATES/s615b/0_DMAoffice.png"]
@@ -131,6 +134,7 @@
     const quiz = [["What year was the HMS Unicorn launched?", "1815", "1824", "1853", "1877", 2]
                 ,["What inspired the design of the V&A?", "Ships", "Whales", "Cliffs", "Waves", 3]
                 ,["River", "1", "2","3","4",2]
+                ,["River2", "1", "2","3","4",2]
                 ,["The flat", "1", "2","3","4",2]
                 ,["Discovery", "1", "2","3","4",2]
                 ,["What game did DMA Design/Rockstar North release in 1997?", "Call of Duty", "Medal of Honour", "Grand Theft Auto", "Quake", 3]
@@ -140,17 +144,24 @@
     
                 ,[]]
 
+    var locationNum = sessionStorage.getItem("locationNum");
+    var caughtGhosts = sessionStorage.getItem("caughtGhosts")
+    sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]);
+    var caughtGhosts = sessionStorage.getItem("caughtGhosts")
+    console.log(caughtGhosts);
+    const caughtGhostsArray = caughtGhosts.split("/");
+    console.log(caughtGhostsArray);
 
     function placeMarkers(){
-        var locationNum = sessionStorage.getItem("locationNum");
-        caughtGhosts.push(circles[locationNum]);
+
+        removeMarker(locationNum, caughtGhostsArray);
+
         for (let i = 0; i < circles.length; i++) {
             var caught = false;
-            for (let j = 0; j < caughtGhosts.length; j++){
-                if (circles[i] == caughtGhosts[j]){
+            for (let j = 0; j < caughtGhostsArray.length; j++){
+                if (circles[i] == caughtGhostsArray[j]){
                     caught = true
                     console.log("caught");
-                    circles[i] = [0, 0];
                 }
             }
             if (caught == false){
@@ -161,7 +172,7 @@
     }
 
 
-    function removeMarker(locationNum){
+    function removeMarker(locationNum, caughtGhosts){
         console.log(circles[locationNum]);
         if(catchGhost.length > 0){
             for (let x = 0; x < caughtGhosts.length; x++){
@@ -171,21 +182,30 @@
     }
     
     placeMarkers();
-    var locationNum = sessionStorage.getItem("locationNum");
-    removeMarker(locationNum);
 
-    function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius, locationNum){
+
+    function isMarkerInsideCircle(markerLatLng, circleCenterLatLng, circleRadius, locationNum, stringLatLng){
         // markerLatLng and circleCenterLatLng must be instance of L.latlng class.
         // you can create an instance like this L.latLng(lat, lng);
-        console.log(markerLatLng.distanceTo(circleCenterLatLng));
-        console.log(circleRadius)
+        //console.log(markerLatLng.distanceTo(circleCenterLatLng));
+        //console.log(circleRadius)
+        var visited = false;
         if (markerLatLng.distanceTo(circleCenterLatLng) <= circleRadius){
-            console.log("yes!");
-            toggleText()
-            document.getElementById("catch").onclick = catchGhost(locationNum);
-            return true;
+            for (let j = 0; j < caughtGhostsArray.length; j++){
+                console.log(stringLatLng.toString());
+                console.log(caughtGhostsArray[j]);
+                if (stringLatLng.toString() == caughtGhostsArray[j]){
+                    console.log("not there")
+                    visited = true;
+                }
+            }
+            if (visited == false){
+                toggleText()
+                document.getElementById("catch").onclick = catchGhost(locationNum);
+                return true;
+            }
+            
         } else {
-            console.log("no!")
             return false;
         }
     }
@@ -204,7 +224,8 @@
     }
 
     function catchGhost(locationNum){
-        sessionStorage.clear();
+       
+
         //https://lage.us/Javascript-Pass-Variables-to-Another-Page.html
         var LatLng = circles[locationNum];
         var lat = circles[locationNum][0];
