@@ -32,12 +32,17 @@ a.stretched-link {
     color: white;
 }
 
+a{
+    padding-left: 10px;
+    
+}
+
 a:active{
     color:black;
 }
 
-a:visited{
-    
+.card{
+    padding: 40px;
 }
 
 h1{
