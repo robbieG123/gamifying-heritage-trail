@@ -113,7 +113,7 @@
 
     var caughtGhosts = [];
 
-    //var caughtLocationsArray = [];
+    var caughtLocations = [];
     
 
     var circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
@@ -158,18 +158,19 @@
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //string of all caught ghost coordinates
     var caughtLocations = sessionStorage.getItem("caughtLocations");
     sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
-    //if(locationNum != null){
-        alert(locationNum);
-        var locationName = locationData[locationNum][0];
-        const caughtLocationsArray = caughtLocations.split("/");
-        if (caughtLocationsArray[caughtLocationsArray.length-1] != locationName){
-            console.log(locationName);
-            sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationName);
-        }
-    //}
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //gets the updated caughtGhosts string for use
     const caughtGhostsArray = caughtGhosts.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
 
+
+    function addToCaught(){
+        var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
+        var caughtLocations = sessionStorage.getItem("caughtLocations");
+        if(locationNum != null){
+            var locationName = locationData[locationNum][0];
+            console.log(locationName);
+            sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationName);
+        }
+    }
 
     //placeMarkers() places the markers of all unvisited locations defined in the circles array
     function placeMarkers(){
@@ -266,5 +267,7 @@
         sessionStorage.setItem("ans3", ans3);
         sessionStorage.setItem("ans4", ans4);
         sessionStorage.setItem("correct", correct);
+
+        addToCaught();
     }
 </script>
