@@ -113,7 +113,7 @@
 
     var caughtGhosts = [];
 
-    var caughtLocations = [];
+    var caughtLocationsArray = [];
     
 
     var circles = [[56.461693858992, -2.9584546440361428, ]//HMS Unicorn
@@ -155,14 +155,16 @@
     
     // uses sessionStorage to add the most recently visited location to caughtGhostsArray. If no ghosts have been caught 'null/undefined' is added to array
     var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
-    console.log(locationNum);
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //string of all caught ghost coordinates
     var caughtLocations = sessionStorage.getItem("caughtLocations");
     sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
     if(locationNum != null){
         var locationName = locationData[locationNum][0];
-        console.log(locationName);
-        sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationName);
+        const caughtLocationsArray = caughtLocations.split("/");
+        if (caughtLocationsArray[caughtLocationsArray.length-1] != locationName){
+            console.log(locationName);
+            sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationName);
+        }
     }
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //gets the updated caughtGhosts string for use
     const caughtGhostsArray = caughtGhosts.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
