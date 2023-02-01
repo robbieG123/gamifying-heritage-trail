@@ -159,7 +159,8 @@
     var caughtLocations = sessionStorage.getItem("caughtLocations");
     sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
     //if(locationNum != null){
-        sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationData[locationNum]);
+        var locationName = locationData[locationNum][0];
+        sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationName);
     //}
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //gets the updated caughtGhosts string for use
     const caughtGhostsArray = caughtGhosts.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
