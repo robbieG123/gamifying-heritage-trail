@@ -159,6 +159,7 @@
     var caughtLocations = sessionStorage.getItem("caughtLocations");
     sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
     if(locationNum != null){
+        alert(locationNum);
         var locationName = locationData[locationNum][0];
         const caughtLocationsArray = caughtLocations.split("/");
         if (caughtLocationsArray[caughtLocationsArray.length-1] != locationName){
