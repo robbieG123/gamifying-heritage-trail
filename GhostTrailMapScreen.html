@@ -156,7 +156,7 @@
     // uses sessionStorage to add the most recently visited location to caughtGhostsArray. If no ghosts have been caught 'null/undefined' is added to array
     var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
     var caughtGhosts = sessionStorage.getItem("caughtGhosts") //string of all caught ghost coordinates
-    var caughtLocations = sessionStorage.getItem("caughLocations")
+    var caughtLocations = sessionStorage.getItem("caughtLocations")
     sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
     if(locationNum != null){
         sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationData[locationNum][0]);
