@@ -46,10 +46,11 @@
     //caughtLocationsArray = [];
 
     var caughtLocations = sessionStorage.getItem("caughtLocations") //gets the updated caughtGhosts string for use
+    alert(caughtLocations);
     const caughtLocationsArray = caughtLocations.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
     console.log(caughtLocationsArray);
     ghostCards = [];
-    alert(caughtLocationsArray);
+    
     for (let i=0; i<caughtLocationsArray.length; i++){
         if (caughtLocationsArray[i] != 'null'){
             ghostCards.push(
