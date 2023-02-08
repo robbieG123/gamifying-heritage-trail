@@ -1,9 +1,9 @@
 body {
-    background-color: #090057;
-    padding: 0;
+    background-color: #415EC6;
+    padding-top: 15px;
     margin: 0;
     color: white;
-    font-family: 'Averia Sans Libre';
+    font-family: 'Jockey One';
 }
 
 #box{
@@ -46,9 +46,13 @@ a:active{
 }
 
 h1{
-    font-size: 2.5rem;
+    font-size: 4rem;
 }
 
+p{
+    padding: 2.5rem;
+    font-size: 1.5rem;
+}
 #map { 
     height: 400px; 
     border-radius: 25px;
