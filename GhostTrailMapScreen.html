@@ -162,6 +162,7 @@
     const caughtGhostsArray = caughtGhosts.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
 
 
+    //addToCaught() adds the caught ghost to the GhostScreen to track how many ghosts have been caught
     function addToCaught(){
         var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
         var caughtLocations = sessionStorage.getItem("caughtLocations");
@@ -213,7 +214,7 @@
             }
             if (visited == false){ //if the marker hasn't been caught
                 toggleText()    //change the button text from 'HOME' to 'CATCH'
-                document.getElementById("catch").onclick = catchGhost(locationNum); //When catch button is clicked, call the catchGhost function
+                document.getElementById("catch").onclick = function() {catchGhost(locationNum)}; //When catch button is clicked, call the catchGhost function
                 return true;
             }
         } else {
