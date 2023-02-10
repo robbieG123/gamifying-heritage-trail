@@ -27,6 +27,7 @@
     AFRAME.registerComponent('ghost', {
     init: function () {
         this.el.addEventListener('click', function (evt) {
+            addToCaught();
             alert('I was clicked at: ', evt.detail.intersection.point);
             location.replace("InformationScreen.html")
             });
@@ -34,6 +35,7 @@
     });
 </script>
   <body>
+    <h1>Tap the screen when the ghost is in the crosshair!</h1>
     <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
     <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
         <a-camera gps-new-camera='gpsMinDistance: 25'>
