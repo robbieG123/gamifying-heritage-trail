@@ -59,6 +59,25 @@
     //sessionStorage.clear();
     // Geolocation Code from https://www.section.io/engineering-education/how-to-build-a-real-time-location-tracker-using-leaflet-js/
     //creates the map
+
+    var redIcon = new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    var ghostIcon = new L.Icon({
+        iconUrl: 'https://cdn.pixabay.com/photo/2012/04/16/12/53/ghost-35852_960_720.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [41, 54],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
     var map_init = L.map('map', {
             center: [56.461693858992, -2.9584546440361428],
             zoom: 15
@@ -95,12 +114,12 @@
                 map_init.removeLayer(circle)
             }
 
-            var latlng = L.latLng([lat, long]) // creates a LatLng object from the coordinates
+            var latlng = L.latLng([lat, long]); // creates a LatLng object from the coordinates
 
-            marker = L.marker(latlng) // declares marker at the location
-            circle = L.circle(latlng, { radius: accuracy }) // declares circle at the location
+            marker = L.marker(latlng,{icon: redIcon}).addTo(map_init); // declares marker at the location
 
-            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init); // places the marker and circle into the map
+
+            //var featureGroup = L.featureGroup(marker).addTo(map_init); // places the marker and circle into the map
 
             //map_init.fitBounds(featureGroup.getBounds())
             
@@ -187,7 +206,7 @@
             }
             if (caught == false){   //if the ghost hasnt already been caught
                 L.circle(circles[i], circleRadius).addTo(map_init); //place circle at the location
-                L.marker(circles[i]).addTo(map_init);   //place circle at the location
+                L.marker(circles[i],{icon: ghostIcon}).addTo(map_init);   //place circle at the location
             }
         }
     }
