@@ -234,7 +234,7 @@
             if (visited == false){ //if the marker hasn't been caught
                 toggleText()    //change the button text from 'HOME' to 'CATCH'
                 document.getElementById("catch").onclick = function() {catchGhost(locationNum)}; //When catch button is clicked, call the catchGhost function
-                sessionStorage.setItem("quizComplete", false);
+
                 return true;
             }
         } else {
@@ -291,5 +291,7 @@
         sessionStorage.setItem("correct", correct);
 
         sessionStorage.setItem("locationName", locationName);
+
+        sessionStorage.setItem("quizComplete", false);
     }
 </script>
