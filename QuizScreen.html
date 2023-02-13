@@ -85,11 +85,23 @@
         
     }
 
+        //addToCaught() adds the caught ghost to the GhostScreen to track how many ghosts have been caught
+        function addToCaught(){
+        //var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
+        //var caughtLocations = sessionStorage.getItem("caughtLocations");
+        //if(locationNum != null){
+        var locationName = sessionStorage.getItem("locationName");
+        console.log(locationName);
+        sessionStorage.setItem("caughtLocations", caughtLocations + "/" +locationName);
+       // }
+    }
+
     function checkResults(){
         for (let i = 1; i<=4;i++){
             if(document.getElementById(i).checked) {
                 if(i == correct){
                     console.log("correct!")
+                    addToCaught();
                     window.location.assign("GhostTrailMapScreen.html");
                 }
                 else{
