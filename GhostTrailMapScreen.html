@@ -192,8 +192,9 @@
 
     //placeMarkers() places the markers of all unvisited locations defined in the circles array
     function placeMarkers(){
-
-        removeMarker(locationNum, caughtGhostsArray);   //changes all visited markers from the circles array to [0, 0]
+        if (quizComplete != "false"){
+            removeMarker(locationNum, caughtGhostsArray);   //changes all visited markers from the circles array to [0, 0]
+        }
         
         for (let i = 0; i < circles.length; i++) {  //loops for the length of circles array
             var caught = false; //declares that the ghost has not been caught
