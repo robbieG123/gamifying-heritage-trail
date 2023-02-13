@@ -174,20 +174,27 @@
                 ,["What is Wishart Arch also known as?", "Wellgate", "Cowgate", "Overgate", "Nethergate"]];
     
     // uses sessionStorage to add the most recently visited location to caughtGhostsArray. If no ghosts have been caught 'null/undefined' is added to array
+    var quizComplete = sessionStorage.getItem("quizComplete");
+    console.log(quizComplete);
     var locationNum = sessionStorage.getItem("locationNum"); //index of the most recently visited location
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //string of all caught ghost coordinates
     var caughtLocations = sessionStorage.getItem("caughtLocations");
-    sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
+    if (quizComplete != "false"){ //checks if the user has completed the quiz
+        console.log("quiz complete");
+        sessionStorage.setItem("caughtGhosts", caughtGhosts + "/" +circles[locationNum]); //adds most recently visited location to sessionStorage caughtGhosts
+    }
     var caughtGhosts = sessionStorage.getItem("caughtGhosts"); //gets the updated caughtGhosts string for use
     const caughtGhostsArray = caughtGhosts.split("/"); //splits the string by '/' and inputs them into the caughtGhostsArray
+    
 
 
 
 
     //placeMarkers() places the markers of all unvisited locations defined in the circles array
     function placeMarkers(){
-        removeMarker(locationNum, caughtGhostsArray);   //changes all visited markers from the circles array to [0, 0]
 
+        removeMarker(locationNum, caughtGhostsArray);   //changes all visited markers from the circles array to [0, 0]
+        
         for (let i = 0; i < circles.length; i++) {  //loops for the length of circles array
             var caught = false; //declares that the ghost has not been caught
             for (let j = 0; j < caughtGhostsArray.length; j++){ //loops for length of caughtGhostsArray
@@ -203,6 +210,7 @@
     }
 
     function removeMarker(locationNum, caughtGhosts){
+
         console.log(circles[locationNum]);
         if(catchGhost.length > 0){
             for (let x = 0; x < caughtGhosts.length; x++){
@@ -226,6 +234,7 @@
             if (visited == false){ //if the marker hasn't been caught
                 toggleText()    //change the button text from 'HOME' to 'CATCH'
                 document.getElementById("catch").onclick = function() {catchGhost(locationNum)}; //When catch button is clicked, call the catchGhost function
+                sessionStorage.setItem("quizComplete", false);
                 return true;
             }
         } else {
@@ -282,7 +291,5 @@
         sessionStorage.setItem("correct", correct);
 
         sessionStorage.setItem("locationName", locationName);
-
-        addToCaught();
     }
 </script>
