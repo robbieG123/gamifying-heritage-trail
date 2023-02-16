@@ -23,11 +23,12 @@
             <h1>Ghost Map</h1>
 
             <div id="map"></div>
-
-            <div class="row d-flex position-relative">
+            <p style="margin-bottom: 0; padding-bottom: 0; padding-top: 5px;">Travel to a ghost, once you're in its vicinity you can catch it.</p>
+            <div class="row" style=" margin-top:0; margin-bottom: 10px;">
+                
                 <div id="catch" style="display: none;">
-                    <div class="col" id="box">
-                        <a  href="CatchScreen.html" class="stretched-link">CATCH</a>
+                    <div class="col" id="box" style="margin-top:10px;">
+                        <a  href="CatchScreen.html" class="stretched-link" >CATCH</a>
                     </div>
                 </div>
 
@@ -170,8 +171,8 @@
                 ,["What game did DMA Design/Rockstar North release in 1997?", "Call of Duty", "Medal of Honour", "Grand Theft Auto", "Quake", 3]
                 ,["Who was the first chancellor of the University of Dundee?", "The Queen Mother", "The Queen", "Prince Philip", "Prince Charles", 1]
                 ,["Which of these is NOT one of the three J's of Dundee?", "Jute", "Jam", "Jeans", "Journalism", 3]
-                ,["Who was Maurice McManus?", "Mayor", "Lord Provost", "Architect", "King"]
-                ,["What is Wishart Arch also known as?", "Wellgate", "Cowgate", "Overgate", "Nethergate"]];
+                ,["Who was Maurice McManus?", "Mayor", "Lord Provost", "Architect", "King", 2]
+                ,["What is Wishart Arch also known as?", "Wellgate", "Cowgate", "Overgate", "Nethergate", 2]];
     
     // uses sessionStorage to add the most recently visited location to caughtGhostsArray. If no ghosts have been caught 'null/undefined' is added to array
     var quizComplete = sessionStorage.getItem("quizComplete");

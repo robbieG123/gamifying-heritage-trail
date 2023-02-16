@@ -32,23 +32,55 @@
     init: function () {
         this.el.addEventListener('click', function (evt) {
             //addToCaught();
-            alert('Caught!');
             location.replace("InformationScreen.html")
             });
         }
     });
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+        console.log("loaded");
+    });
 </script>
+
   <body>
-    <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
-    <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
-        <a-camera gps-new-camera='gpsMinDistance: 25'>
-            <a-entity cursor="fuse: false; fuseTimeout: 500"
-                position="0 0 -1"
-                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                material="color: black; shader: flat">
-            </a-entity>  <!--fuse: false when on desktop, true on mobile -->
-        </a-camera>
-    </a-scene>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Subscribe our Newsletter</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+            <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email Address">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="position:relative;">
+        <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
+        <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+            <a-camera gps-new-camera='gpsMinDistance: 25'>
+                <a-entity cursor="fuse: false; fuseTimeout: 500"
+                    position="0 0 -1"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: black; shader: flat">
+                </a-entity>  <!--fuse: false when on desktop, true on mobile -->
+            </a-camera>
+        </a-scene>
+        <div class="container text-center" style="position:absolute; top:0px; left:0px; z-index:1000;">
+        <h1>Find the ghost!</h1>
+        <p> Put the crosshair on the ghost and tap the screen to catch</p>
+        </div>
+    </div>
   </body>
 </html>
 

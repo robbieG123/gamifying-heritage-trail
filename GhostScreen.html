@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">    <title>Dundee Ghost Trail</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
@@ -12,6 +13,18 @@
   </head>
   <body>
     <main>
+        <div id="myModal" class="modal fade" style="color:black;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">You caught all the ghosts!</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Congratulations. You have successfully caught all the ghosts around Dundee. Hopefully you learned a lot about the city and lets hope these ghosts dont escape again!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container text-center">
             <h1>Ghosts Collected</h1>
             <h2 id="collectedNum">/8</h2>
@@ -69,7 +82,12 @@
             }
         }
         
+    
     document.getElementById("collectedNum").innerHTML = ghostNum + "/8";
     document.getElementById("ghosts").innerHTML = ghostCards.join('');
+    if (ghostNum == 8){
+                $("#myModal").modal('show');
+                console.log("loaded");
+    }
     
 </script>
