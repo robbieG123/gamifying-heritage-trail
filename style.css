@@ -75,7 +75,8 @@ footer{
 
 /* Style for the radio buttons on quiz screen taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio*/
 /* The container */
-.container {
+.ignore {
+    display: block;
     position: relative;
     margin-bottom: 12px;
     cursor: pointer;
