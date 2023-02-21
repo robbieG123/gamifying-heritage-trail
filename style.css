@@ -68,9 +68,6 @@ p{
     height:30px;
     width:10%;
 }
-.container{
-  display: flex;
-}
 
 footer{
   position: absolute;
@@ -137,4 +134,8 @@ footer{
       height: 8px;
       border-radius: 50%;
       background: white;
+  }
+
+  .navbar{
+    display: flex;
   }
