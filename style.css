@@ -58,8 +58,9 @@ p{
     border-radius: 25px;
 }
 
-#header, img {
+#header img{
     padding-top: 10px;
+    width: 100%;
 }
 
 #inline-image{
@@ -82,7 +83,6 @@ footer{
 .container {
     display: block;
     position: relative;
-    margin-bottom: 12px;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
