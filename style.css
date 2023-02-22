@@ -60,7 +60,6 @@ p{
 
 #header, img {
     padding-top: 10px;
-    width: 100%;
 }
 
 #inline-image{
@@ -72,6 +71,10 @@ p{
 footer{
   display: flex;
   position: absolute;
+}
+
+.bottom-nav{
+  padding-left: 50px;
 }
 
 /* Style for the radio buttons on quiz screen taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio*/
