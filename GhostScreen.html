@@ -28,10 +28,12 @@
         <div class="container text-center">
             <h1>Ghosts Collected</h1>
             <h2 id="collectedNum">/8</h2>
+            <p id="emptyText"></p>
         </div>
         <div class="card-group" id="ghosts">
             
         </div>
+        
     </div>
 
 <footer>
@@ -59,13 +61,18 @@
 
 <script>
     //caughtLocationsArray = [];
-
+    
     var caughtLocations = sessionStorage.getItem("caughtLocations") //gets the updated caughtGhosts string for use
+    if (caughtLocations == null){
+      console.log("empty");
+      document.getElementById("collectedNum").innerHTML = "0/8";
+      document.getElementById("emptyText").innerHTML = "Looking awful empty...";
+    }
     const caughtLocationsArray = caughtLocations.split("/"); //splits the string by '/' and inputs them into the caughtLocationsArray
     console.log(caughtLocationsArray.length);
     ghostCards = [];
     var ghostNum = caughtLocationsArray.length - 1
-
+    
     
     
     for (let i=0; i<caughtLocationsArray.length; i++){
