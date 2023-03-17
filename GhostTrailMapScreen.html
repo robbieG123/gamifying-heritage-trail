@@ -119,14 +119,16 @@
 
             marker = L.marker(latlng,{icon: redIcon}).addTo(map_init); // declares marker at the location
 
-            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+           // var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
 
-            map_init.fitBounds(featureGroup.getBounds())
+           // map_init.fitBounds(featureGroup.getBounds())
             
             //checks if the user is inside any of the circles
             for (let i = 0; i < circles.length; i++) { 
                 var circleLatlng = L.latLng(circles[i])
-                isMarkerInsideCircle(latlng, circleLatlng, circleRadius, i, circles[i])
+                if(isMarkerInsideCircle(latlng, circleLatlng, circleRadius, i, circles[i])){
+                    break;
+                }
             }
             
         }
