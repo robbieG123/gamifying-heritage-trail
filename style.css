@@ -49,6 +49,7 @@ h1{
     font-size: 3.8rem;
 }
 
+
 p{
     padding: 2.5rem;
     font-size: 1.25rem;
@@ -143,3 +144,14 @@ footer{
   .navbar{
     display: flex;
   }
+
+  
+@media only screen and (max-height: 700px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  #map{
+    height: 300px; 
+  }
+}
