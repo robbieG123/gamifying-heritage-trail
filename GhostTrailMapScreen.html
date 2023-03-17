@@ -118,6 +118,10 @@
             var latlng = L.latLng([lat, long]); // creates a LatLng object from the coordinates
 
             marker = L.marker(latlng,{icon: redIcon}).addTo(map_init); // declares marker at the location
+
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
+
+            map_init.fitBounds(featureGroup.getBounds())
             
             //checks if the user is inside any of the circles
             for (let i = 0; i < circles.length; i++) { 
