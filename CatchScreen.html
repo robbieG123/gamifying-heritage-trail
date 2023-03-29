@@ -26,12 +26,10 @@
 
 
 
-    //alert('Tap the screen when the ghost is in the crosshair!');
-    // Component to change to a sequential color on click.
+    //checks if the crosshair is in front of the ghost and changes to InfoScreen when clicked
     AFRAME.registerComponent('ghost', {
     init: function () {
         this.el.addEventListener('click', function (evt) {
-            //addToCaught();
             location.replace("InformationScreen.html")
             });
         }
@@ -45,7 +43,9 @@
   <body>
     <div style="position:relative;">
         <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
-        <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+        <a-scene vr-mode-ui='enabled: false' 
+        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' 
+        renderer='antialias: true; alpha: true'>
             <a-camera gps-new-camera='gpsMinDistance: 25'>
                 <a-entity cursor="fuse: true; fuseTimeout: 500"
                     position="0 0 -1"
@@ -71,7 +71,7 @@
     const el = document.querySelector("[gps-new-camera]");
     el.addEventListener("gps-camera-update-position", e => {
         if(!testEntityAdded) {
-            // Add a box to the north of the initial GPS position
+            // Add a ghost to the north of the initial GPS position
             const entity = document.createElement("a-entity");
             entity.setAttribute('id', 'ghostID');
             entity.setAttribute('ghost', ''); //assigns Ghost to ghost component so it can be interacted with
@@ -91,21 +91,3 @@
     });  
 };
 </script>
-<!-- 
-<script>
-    let caught = false;
-    for (let i = 0; i < 5; i++){
-        sleep(2000);
-        alert("increasing");
-        const model = document.getElementById('ghostID')
-        model.setAttribute('gps-new-entity-place', {
-            latitude: e.detail.position.latitude + i/100,
-            longitude: e.detail.position.longitude + i/100
-        });
-       // setTimeout(() => {
-        document.querySelector("a-scene").appendChild(model) 
-       // }, 500);
-        
-    }
-</script>
--->
