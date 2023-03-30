@@ -79,6 +79,10 @@ footer{
   padding-left: 50px;
 }
 
+.container{
+  padding-bottom: 10px;
+}
+
 /* Style for the radio buttons on quiz screen taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio*/
 /* The container */
 .container {
@@ -107,6 +111,7 @@ footer{
     width: 25px;
     background-color: #eee;
     border-radius: 50%;
+    padding-bottom: 20px;
   }
   
   /* On mouse-over, add a grey background color */
