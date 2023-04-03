@@ -125,7 +125,6 @@
 
             var latlng = L.latLng([lat, long]); // creates a LatLng object from the coordinates
             circles.push(latlng)
-            console.log(circles[11])
             marker = L.marker(latlng,{icon: redIcon}).addTo(map_init); // declares marker at the location
 
            // var featureGroup = L.featureGroup([marker, circle]).addTo(map_init)
@@ -175,7 +174,6 @@
                 ,["What inspired the design of the V&A?", "Ships", "Whales", "Cliffs", "Waves", 3]
                 ,["River", "1", "2","3","4",2]
                 ,["River2", "1", "2","3","4",2]
-                ,["The flat", "1", "2","3","4",2]
                 ,["Which of these was NOT a scientist on the RRS Discovery", "Zoologist", "Marine Biologist","Botanist","Chemist",4]
                 ,["What game did DMA Design/Rockstar North release in 1997?", "Call of Duty", "Medal of Honour", "Grand Theft Auto", "Quake", 3]
                 ,["Who was the first chancellor of the University of Dundee?", "The Queen Mother", "The Queen", "Prince Philip", "Prince Charles", 1]
