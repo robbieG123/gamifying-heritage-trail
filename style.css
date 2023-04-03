@@ -79,8 +79,8 @@ footer{
   padding-left: 50px;
 }
 
-.container{
-  padding-bottom: 30px;
+#question{
+  margin-top: 30px;
 }
 
 /* Style for the radio buttons on quiz screen taken from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_radio*/

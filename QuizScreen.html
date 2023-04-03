@@ -43,6 +43,8 @@
 </html>
 <script>
     //var quiz = sessionStorage.getItem("quiz");
+    var locationNum = sessionStorage.getItem("locationNum");
+    console.log(locationNum);
     var question = sessionStorage.getItem("question");
     var ans1 = sessionStorage.getItem("ans1");
     var ans2 = sessionStorage.getItem("ans2");
@@ -66,25 +68,25 @@
 
         // ...add an html radio button
         answers.push(
-            '<label class="container">'
+            '<label class="container" id="question">'
                 + '<input type="radio" name="answer" value="1" id="1">'
                 + '<span class ="checkmark"></span>'
                 +  'A: '
                 + ans1
             + '</label>' +
-            '<label class="container">'
+            '<label class="container" id="question">'
                 + '<input type="radio" name="answer" value="2" id="2">'
                 + '<span class ="checkmark"></span>'
                 +  'B: '
                 + ans2
             + '</label>' +
-            '<label class="container">'
+            '<label class="container" id="question">'
                 + '<input type="radio" name="answer" value="3" id="3">'
                 + '<span class ="checkmark"></span>'
                 +  'C: '
                 + ans3
             + '</label>' +
-            '<label class="container">'
+            '<label class="container" id="question">'
                 + '<input type="radio" name="answer" value="4" id="4">'
                 + '<span class ="checkmark"></span>'
                 +  'D: '
