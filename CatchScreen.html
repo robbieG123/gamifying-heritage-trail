@@ -41,7 +41,6 @@
 </script>
 
   <body>
-    <div style="position:relative;">
         <!--https://ar-js-org.github.io/AR.js-Docs/location-based/-->
         <a-scene vr-mode-ui='enabled: false' 
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' 
@@ -54,12 +53,6 @@
                 </a-entity>  <!--fuse: false when on desktop, true on mobile -->
             </a-camera>
         </a-scene>
-        <div class="container text-center" style="position:absolute; top:0px; left:0px; z-index:1000;">
-        <h1>Find the ghost!</h1>
-        <p> Put the crosshair on the ghost and tap the screen to catch. If it doesn't appear, press the refresh button</p>
-        <button onClick="window.location.reload();">Refresh Page</button>
-        </div>
-    </div>
   </body>
 </html>
 
