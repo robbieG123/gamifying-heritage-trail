@@ -43,11 +43,6 @@
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' 
         renderer='antialias: true; alpha: true'>
             <a-camera gps-new-camera='gpsMinDistance: 25'>
-                <a-entity cursor="fuse: true; fuseTimeout: 500"
-                    position="0 0 -1"
-                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                    material="color: black; shader: flat">
-                </a-entity>  <!--fuse: false when on desktop, true on mobile -->
             </a-camera>
         </a-scene>
     </div>
