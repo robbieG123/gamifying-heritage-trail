@@ -55,7 +55,7 @@ p{
     font-size: 1.25rem;
 }
 #map { 
-    height: 25rem; 
+    height: 20rem; 
     border-radius: 25px;
 }
 
@@ -156,6 +156,10 @@ footer{
   }
 
   #map{
-    height: 300px; 
+    height: 15rem; 
+  }
+
+  #catch{
+    height: 10rem;
   }
 }
