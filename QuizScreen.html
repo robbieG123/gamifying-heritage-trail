@@ -18,10 +18,15 @@
         <div class="container text-center">
             <!-- https://simplestepscode.com/javascript-quiz-tutorial/ -->
             <div id="quiz"></div>
+        
+        <div class="row" style=" margin-top:0; margin-bottom: 10px;">
+            <div id="catch" style="display:block;bottom:0%">
+                <div class="col" id="box" >
+                    <h1>SUBMIT</h1>
+                </div>
+            </div>
         </div>
-        <button id="box">
-            <h1>SUBMIT</h1>
-        </button>
+    </div>
         <div id="myModal" class="modal fade" style="color:black;">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -54,7 +59,7 @@
 
     generateQuiz(question, ans1, ans2, ans3, ans4, correct);
 
-    document.getElementById('box').onclick = function(){
+    document.getElementById('catch').onclick = function(){
         checkResults()
     }
 
@@ -95,7 +100,7 @@
         );
 
         output.push(
-            '<div class="question">' + '<h1>' +question + '</h1>'+'</div>'
+            '<div class="question">' + '<h2>' +question + '</h2>'+'</div>'
 			+ '<div class="answers">' + answers.join('') + '</div>'  
         );
 
